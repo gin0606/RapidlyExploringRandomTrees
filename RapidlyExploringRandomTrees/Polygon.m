@@ -7,14 +7,9 @@
 
 #import "Polygon.h"
 #import "NodeArray.h"
-#import "Vector2.h"
 #import "EdgeArray.h"
 #import "Edge.h"
-
-@interface Polygon ()
-- (CGPoint)vectorToCGPoint:(Vector2 *)v;
-
-@end
+#import "Node.h"
 
 @implementation Polygon {
 }
@@ -29,12 +24,12 @@
 
         self.edgeArray = [EdgeArray edgeArray];
         int count = [nodeArray count];
-        Vector2 *sp = [nodeArray objectAtIndex:0];
-        CGPathMoveToPoint(self.path, NULL, sp.x, sp.y);
+        Node *sp = [nodeArray objectAtIndex:0];
+        CGPathMoveToPoint(self.path, NULL, sp.p.x, sp.p.y);
 
         for (int i = 1; i < count; i++) {
-            Vector2 *v = [nodeArray objectAtIndex:i];
-            CGPathAddLineToPoint(self.path, NULL, v.x, v.y);
+            Node *v = [nodeArray objectAtIndex:i];
+            CGPathAddLineToPoint(self.path, NULL, v.p.x, v.p.y);
 
             Edge *edge = [Edge edgeWithOrigin:sp destination:v];
             [self.edgeArray addObject:edge];
@@ -48,12 +43,7 @@
 }
 
 // v が Polygonの領域内ならYES
-- (BOOL)containPoint:(Vector2 *)v {
-    CGPoint point = [self vectorToCGPoint:v];
-    return CGPathContainsPoint(self.path, NULL, point, YES);
-}
-
-- (CGPoint)vectorToCGPoint:(Vector2 *)v {
-    return ccp(v.x, v.y);
+- (BOOL)containPoint:(Node *)v {
+    return CGPathContainsPoint(self.path, NULL, v.p, YES);
 }
 @end

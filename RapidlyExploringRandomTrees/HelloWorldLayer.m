@@ -10,12 +10,11 @@
 #import "HelloWorldLayer.h"
 #import "RapidlyExploringRandomTrees.h"
 #import "Edge.h"
-#import "Vector2.h"
 #import "EdgeArray.h"
 #import "Polygon.h"
 #import "PolygonArray.h"
 #import "NodeArray.h"
-#import "Vector2Extension.h"
+#import "Node.h"
 
 @interface HelloWorldLayer ()
 @property(retain, nonatomic) RapidlyExploringRandomTrees *rrt;
@@ -39,7 +38,7 @@
         CGSize winSize = [CCDirector sharedDirector].winSize;
 
         // 始点をとりあえず真ん中に設置
-        Vector2 *startPoint = vector(winSize.width / 2, winSize.height / 2);
+        Node *startPoint = [Node nodeWithX:winSize.width / 2 y:winSize.height / 2];
         self.rrt.startPoint = startPoint;
         [self.rrt.nodeArray addObject:startPoint];
 
@@ -48,10 +47,10 @@
         NodeArray *na = [NodeArray nodeArray];
         int n = 8;
         float angle = 360 / n;
-        Vector2 *circleCenter = [Vector2 vector2WithX:75 Y:75];
+        Node *circleCenter = [Node nodeWithX:75 y:75];
         for (int i = 0; i < n; i++) {
-            Vector2 *v = [Vector2Extension ccpRotateByAngle:circleCenter
-                                                      pivot:vector(50, 50) angle:CC_DEGREES_TO_RADIANS(angle * i)];
+            CGPoint rp = ccpRotateByAngle(circleCenter.p, ccp(50, 50), CC_DEGREES_TO_RADIANS(angle * i));
+            Node *v = [Node nodeWithPoint:rp];
             [na addObject:v];
         }
         [self.rrt.objectArray addObject:[Polygon polygonWithNodeArray:na]];
@@ -72,15 +71,15 @@
     [self drawEdges:self.rrt.startPoint];
 
     ccDrawColor4B(0, 0, 255, 255);
-    ccDrawPoint(vectorToCGPoint(self.rrt.targetPoint));
+    ccDrawPoint(self.rrt.targetPoint.p);
 
     if (self.rrt.goalPoint) {
         [self unschedule:@selector(step)];
         ccDrawColor4B(255, 0, 0, 255);
-        __block void (^drawGoalRoot)(Vector2 *) = ^(Vector2 *v) {
-            if (v.prevVector != nil) {
-                drawGoalRoot(v.prevVector);
-                [self drawLine:v destination:v.prevVector];
+        __block void (^drawGoalRoot)(Node *) = ^(Node *v) {
+            if (v.prevNode != nil) {
+                drawGoalRoot(v.prevNode);
+                [self drawLine:v destination:v.prevNode];
             }
         };
         drawGoalRoot(self.rrt.goalPoint);
@@ -94,18 +93,16 @@
     }
 }
 
-- (void)drawEdges:(Vector2 *)startPoint {
-    for (Vector2 *v2 in startPoint.nextVectors) {
+- (void)drawEdges:(Node *)startPoint {
+    for (Node *v2 in startPoint.nextNodes) {
         [self drawEdges:v2];
         [self drawLine:startPoint destination:v2];
     }
 
 }
 
-- (void)drawLine:(Vector2 *)origin destination:(Vector2 *)destination {
-    CGPoint originPoint = vectorToCGPoint(origin);
-    CGPoint destinationPoint = vectorToCGPoint(destination);
-    ccDrawLine(originPoint, destinationPoint);
+- (void)drawLine:(Node *)origin destination:(Node *)destination {
+    ccDrawLine(origin.p, destination.p);
 }
 
 - (void)drawPolygon:(EdgeArray *)edgeArray {

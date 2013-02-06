@@ -7,10 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class Vector2;
 @class EdgeArray;
 @class NodeArray;
 @class PolygonArray;
+@class Node;
 
 @interface RapidlyExploringRandomTrees : NSObject
 @property(nonatomic) float minX;
@@ -20,9 +20,9 @@
 @property(nonatomic) float diffX;
 @property(nonatomic) float diffY;
 
-@property(retain, nonatomic) Vector2 *startPoint;
-@property(retain, nonatomic) Vector2 *targetPoint;
-@property(retain, nonatomic) Vector2 *goalPoint;
+@property(retain, nonatomic) Node *startPoint;
+@property(retain, nonatomic) Node *targetPoint;
+@property(retain, nonatomic) Node *goalPoint;
 @property(nonatomic) float delta;
 
 @property(retain, nonatomic) NodeArray *nodeArray;

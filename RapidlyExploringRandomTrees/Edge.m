@@ -6,17 +6,17 @@
 
 
 #import "Edge.h"
-#import "Vector2.h"
+#import "Node.h"
 
 
 @implementation Edge {
 
 }
-+ (id)edgeWithOrigin:(Vector2 *)origin destination:(Vector2 *)destination {
++ (id)edgeWithOrigin:(Node *)origin destination:(Node *)destination {
     return [[[self alloc] initWithOrigin:origin destination:destination] autorelease];
 }
 
-- (id)initWithOrigin:(Vector2 *)origin destination:(Vector2 *)destination {
+- (id)initWithOrigin:(Node *)origin destination:(Node *)destination {
     if(self = [super init]){
         self.origin = origin;
         self.destination = destination;

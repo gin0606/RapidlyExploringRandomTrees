@@ -7,13 +7,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class Vector2;
+@class Node;
 
 
 @interface Edge : NSObject
-+(id)edgeWithOrigin:(Vector2 *)origin destination:(Vector2 *)destination;
--(id)initWithOrigin:(Vector2 *)origin destination:(Vector2 *)destination;
++(id)edgeWithOrigin:(Node *)origin destination:(Node *)destination;
+-(id)initWithOrigin:(Node *)origin destination:(Node *)destination;
 
-@property (retain, nonatomic)Vector2 * origin;
-@property (retain, nonatomic)Vector2 * destination;
+@property (retain, nonatomic)Node * origin;
+@property (retain, nonatomic)Node * destination;
 @end

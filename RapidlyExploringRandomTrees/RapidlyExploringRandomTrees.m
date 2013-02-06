@@ -8,15 +8,14 @@
 #import "NodeArray.h"
 #import "RapidlyExploringRandomTrees.h"
 #import "PolygonArray.h"
-#import "Vector2.h"
-#import "Vector2Extension.h"
 #import "EdgeExtension.h"
 #import "Polygon.h"
 #import "Edge.h"
 #import "EdgeArray.h"
+#import "Node.h"
 
 @interface RapidlyExploringRandomTrees ()
-- (Vector2 *)randomVector;
+- (Node *)randomVector;
 
 - (float)randomFloat;
 
@@ -49,7 +48,7 @@
         while ([self didVectorHitBarriers:self.targetPoint]) {
             self.targetPoint = [self randomVector];
         }
-        CCLOG(@"targetX : %f, targetY : %f", self.targetPoint.x, self.targetPoint.y);
+        CCLOG(@"targetX : %f, targetY : %f", self.targetPoint.p.x, self.targetPoint.p.y);
 
         self.delta = 1.f;
     }
@@ -66,13 +65,13 @@ NからRにdeltaだけ移動した点Dを求める
 ----
  */
 - (void)step {
-    Vector2 *randomPoint = [self randomVector];
-    Vector2 *nealyPoint = [self.nodeArray nearlyNode:randomPoint];
+    Node *randomPoint = [self randomVector];
+    Node *nealyPoint = [self.nodeArray nearlyNode:randomPoint];
 
-    Vector2 *vectorDistance = [Vector2Extension ccpSub:randomPoint v2:nealyPoint];
-    Vector2 *moveDelta = [Vector2Extension ccpMult:[Vector2Extension ccpNormalize:vectorDistance] s:self.delta];
+    Node *vectorDistance = [Node nodeWithPoint:ccpSub(randomPoint.p, nealyPoint.p)];
+    Node *moveDelta = [Node nodeWithPoint:ccpMult(ccpNormalize(vectorDistance.p), self.delta)];
 
-    Vector2 *deltaPoint = [Vector2Extension ccpAdd:nealyPoint v2:moveDelta];
+    Node *deltaPoint = [Node nodeWithPoint:ccpAdd(nealyPoint.p, moveDelta.p)];
     Edge *edge = [Edge edgeWithOrigin:nealyPoint destination:deltaPoint];
 
 
@@ -84,27 +83,20 @@ NからRにdeltaだけ移動した点Dを求める
             && ![self didVectorHitBarriers:deltaPoint]
             && ![self didVectorOverBarriers:edge]) {
         [nealyPoint addNextVector:deltaPoint];
-        deltaPoint.prevVector = nealyPoint;
+        deltaPoint.prevNode = nealyPoint;
 
         [self.nodeArray addObject:deltaPoint];
-        if ([self ccpFuzzyEqual:self.targetPoint v2:deltaPoint variance:10]) {
+        if (ccpFuzzyEqual(self.targetPoint.p, deltaPoint.p, 10)){
             self.goalPoint = deltaPoint;
         }
     }
 }
 
-- (BOOL)ccpFuzzyEqual:(Vector2 *)a v2:(Vector2 *)b variance:(float)var {
-    if (a.x - var <= b.x && b.x <= a.x + var) if (a.y - var <= b.y && b.y <= a.y + var)
-        return true;
-    return false;
-}
-
-
-- (BOOL)edgeCrossCheck:(Vector2 *)o1 destination:(Vector2 *)d1 {
-    for (Vector2 *o2 in self.nodeArray.embeddedArray) {
-        for (Vector2 *d2 in o2.nextVectors) {
-            BOOL isCrossing = [EdgeExtension edgeOrigin1:o1 distination1:d1
-                                   isCrossingEdgeOrigin2:o2 destination2:d2];
+- (BOOL)edgeCrossCheck:(Node *)o1 destination:(Node *)d1 {
+    for (Node *o2 in self.nodeArray.embeddedArray) {
+        for (Node *d2 in o2.nextNodes) {
+            BOOL isCrossing = [EdgeExtension edgeOrigin1:o1.p distination1:d1.p
+                                   isCrossingEdgeOrigin2:o2.p destination2:d2.p];
             if (isCrossing) {
                 return YES;
             }
@@ -114,7 +106,7 @@ NからRにdeltaだけ移動した点Dを求める
 }
 
 // 障害物にvが入ってるか
-- (BOOL)didVectorHitBarriers:(Vector2 *)v {
+- (BOOL)didVectorHitBarriers:(Node *)v {
     for (Polygon *polygon in self.objectArray) {
         if ([polygon containPoint:v]) {
             return YES;
@@ -136,10 +128,10 @@ NからRにdeltaだけ移動した点Dを求める
 }
 
 // 画面内の点を返す
-- (Vector2 *)randomVector {
+- (Node *)randomVector {
     float randomX = [self randomFloat] * self.diffX;
     float randomY = [self randomFloat] * self.diffY;
-    return vector(self.minX + randomX, self.minY + randomY);
+    return [Node nodeWithX:self.minX + randomX y:self.minY + randomY];
 }
 
 /*

@@ -8,14 +8,15 @@
 #import <Foundation/Foundation.h>
 
 @class Edge;
+@class Node;
 
 
 @interface EdgeExtension : NSObject
 + (BOOL)edge1:(Edge *)edge1 isCrossingEdge2:(Edge *)edge2;
 
-+ (BOOL)edgeOrigin1:(Vector2 *)o1 distination1:(Vector2 *)d1 isCrossingEdgeOrigin2:(Vector2 *)o2 destination2:(Vector2 *)d2;
++ (BOOL)edgeOrigin1:(CGPoint)o1 distination1:(CGPoint)d1 isCrossingEdgeOrigin2:(CGPoint)o2 destination2:(CGPoint)d2;
 
-+ (BOOL)edgeLengthRangeContainVector:(Edge *)edge vector:(Vector2 *)vector;
++ (BOOL)edgeLengthRangeContainVector:(Edge *)edge vector:(Node *)vector;
 
 
 @end

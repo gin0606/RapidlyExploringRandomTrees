@@ -9,14 +9,14 @@
 
 @class NodeArray;
 @class EdgeArray;
-@class Vector2;
+@class Node;
 
 @interface Polygon : NSObject
 + (id)polygonWithNodeArray:(NodeArray *)nodeArray;
 
 - (id)initWithNodeArray:(NodeArray *)nodeArray;
 
-- (BOOL)containPoint:(Vector2 *)v;
+- (BOOL)containPoint:(Node *)v;
 
 
 @property CGMutablePathRef path;

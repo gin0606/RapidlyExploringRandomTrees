@@ -6,8 +6,7 @@
 
 
 #import "NodeArray.h"
-#import "Vector2.h"
-#import "Vector2Extension.h"
+#import "Node.h"
 
 
 @interface NodeArray ()
@@ -28,11 +27,11 @@
     return self;
 }
 
-- (Vector2 *)nearlyNode:(Vector2 *)node {
+- (Node *)nearlyNode:(Node *)node {
     float minDistance = FLT_MAX;
-    Vector2 *nealyNode = nil;
-    for (Vector2 *vector in self.embeddedArray) {
-        float distance = [Vector2Extension vectorDistance:node v2:vector];
+    Node *nealyNode = nil;
+    for (Node *vector in self.embeddedArray) {
+        float distance = ccpDistance(node.p, vector.p);
         if (distance < minDistance) {
             nealyNode = vector;
             minDistance = distance;
@@ -42,10 +41,10 @@
     return nealyNode;
 }
 
-- (NSArray *)nearlyNodes:(Vector2 *)node range:(float)r{
+- (NSArray *)nearlyNodes:(Node *)node range:(float)r {
     NSMutableArray *nealyNodes = [NSMutableArray array];
-    for (Vector2 *vector in self.embeddedArray) {
-        float distance = [Vector2Extension vectorDistance:node v2:vector];
+    for (Node *vector in self.embeddedArray) {
+        float distance = ccpDistance(node.p, vector.p);
         if (distance < r) {
             [nealyNodes addObject:vector];
         }
@@ -63,7 +62,7 @@
 }
 
 - (void)addObject:(id)anObject {
-    NSAssert([anObject isKindOfClass:[Vector2 class]], @"Vector2 can add Edge Class.");
+    NSAssert([anObject isKindOfClass:[Node class]], @"Vector2 can add Edge Class.");
     [self.embeddedArray addObject:anObject];
 }
 

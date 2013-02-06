@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Vector2;
+@class Node;
 
 @interface NodeArray : NSMutableArray {
 }
@@ -15,9 +15,9 @@
 
 - (id)init;
 
-- (Vector2 *)nearlyNode:(Vector2 *)node;
+- (Node *)nearlyNode:(Node *)node;
 
-- (NSArray *)nearlyNodes:(Vector2 *)node range:(float)r;
+- (NSArray *)nearlyNodes:(Node *)node range:(float)r;
 
 
 - (unsigned)count;
