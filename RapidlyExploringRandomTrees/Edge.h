@@ -11,9 +11,10 @@
 
 
 @interface Edge : NSObject
-+(id)edgeWithOrigin:(Node *)origin destination:(Node *)destination;
--(id)initWithOrigin:(Node *)origin destination:(Node *)destination;
++ (id)edgeWithOrigin:(Node *)origin destination:(Node *)destination;
 
-@property (retain, nonatomic)Node * origin;
-@property (retain, nonatomic)Node * destination;
+- (id)initWithOrigin:(Node *)origin destination:(Node *)destination;
+
+@property(retain, nonatomic) Node *origin;
+@property(retain, nonatomic) Node *destination;
 @end

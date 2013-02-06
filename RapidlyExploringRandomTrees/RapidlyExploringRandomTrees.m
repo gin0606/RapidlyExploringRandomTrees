@@ -93,7 +93,7 @@ NからRにdeltaだけ移動した点Dを求める
         deltaPoint.prevNode = nealyPoint;
 
         [self.nodeArray addObject:deltaPoint];
-        if (ccpFuzzyEqual(self.targetPoint.p, deltaPoint.p, 10)){
+        if (ccpFuzzyEqual(self.targetPoint.p, deltaPoint.p, 10)) {
             self.goalPoint = deltaPoint;
         }
     }

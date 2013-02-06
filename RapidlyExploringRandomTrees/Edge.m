@@ -17,7 +17,7 @@
 }
 
 - (id)initWithOrigin:(Node *)origin destination:(Node *)destination {
-    if(self = [super init]){
+    if (self = [super init]) {
         self.origin = origin;
         self.destination = destination;
     }
