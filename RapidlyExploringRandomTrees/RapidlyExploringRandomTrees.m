@@ -15,6 +15,13 @@
 #import "Node.h"
 
 @interface RapidlyExploringRandomTrees ()
+- (BOOL)edgeCrossCheck:(Node *)o1 destination:(Node *)d1;
+
+- (BOOL)didVectorHitBarriers:(Node *)v;
+
+- (BOOL)didVectorOverBarriers:(Edge *)edge;
+
+
 - (Node *)randomVector;
 
 - (float)randomFloat;
