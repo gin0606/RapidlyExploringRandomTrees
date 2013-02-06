@@ -50,13 +50,6 @@
         // 障害物入れるArray
         self.objectArray = [PolygonArray polygonArray];
 
-        // 目標地点はとりあえず設定しないので一応nil
-        self.targetPoint = [self randomVector];
-        while ([self didVectorHitBarriers:self.targetPoint]) {
-            self.targetPoint = [self randomVector];
-        }
-        CCLOG(@"targetX : %f, targetY : %f", self.targetPoint.p.x, self.targetPoint.p.y);
-
         self.delta = 1.f;
     }
     return self;

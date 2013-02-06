@@ -38,10 +38,13 @@
         CGSize winSize = [CCDirector sharedDirector].winSize;
 
         // 始点をとりあえず真ん中に設置
-        Node *startPoint = [Node nodeWithX:winSize.width / 2 y:winSize.height / 2];
+        Node *startPoint = [Node nodeWithX:0 y:0];
         self.rrt.startPoint = startPoint;
         [self.rrt.nodeArray addObject:startPoint];
 
+        // 目標地点はとりあえず設定
+        self.rrt.targetPoint = [Node nodeWithX:winSize.width y:winSize.height];
+        CCLOG(@"targetX : %f, targetY : %f", self.rrt.targetPoint.p.x, self.rrt.targetPoint.p.y);
 
         // 障害物を仮で設置
         NodeArray *na = [NodeArray nodeArray];
