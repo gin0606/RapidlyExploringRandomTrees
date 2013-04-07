@@ -11,7 +11,6 @@
 #import "RapidlyExploringRandomTrees.h"
 #import "Edge.h"
 #import "Polygon.h"
-#import "PolygonArray.h"
 #import "NodeArray.h"
 #import "Node.h"
 
@@ -89,7 +88,7 @@
 
     // 障害物描写
     ccDrawColor4B(0, 255, 0, 255);
-    PolygonArray *polygonArray = self.rrt.objectArray;
+    NSMutableArray *polygonArray = self.rrt.objectArray;
     for (Polygon *polygon in polygonArray) {
         [self drawPolygon:polygon.edgeArray];
     }

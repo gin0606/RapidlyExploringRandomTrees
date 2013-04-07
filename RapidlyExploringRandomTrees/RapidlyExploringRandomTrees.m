@@ -7,7 +7,6 @@
 
 #import "NodeArray.h"
 #import "RapidlyExploringRandomTrees.h"
-#import "PolygonArray.h"
 #import "EdgeExtension.h"
 #import "Polygon.h"
 #import "Edge.h"
@@ -47,7 +46,7 @@
         self.nodeArray = [NodeArray nodeArray];
 
         // 障害物入れるArray
-        self.objectArray = [PolygonArray polygonArray];
+        self.objectArray = [NSMutableArray array];
 
         self.delta = 1.f;
     }
@@ -117,6 +116,7 @@ NからRにdeltaだけ移動した点Dを求める
 // 障害物に線が被ってるか
 - (BOOL)didVectorOverBarriers:(Edge *)edge {
     for (Polygon *polygon in self.objectArray) {
+        NSAssert([polygon isKindOfClass:[Polygon class]], @"objectArrayにはPolygonしか入れない");
         for (Edge *polygonEdge in polygon.edgeArray) {
             if ([EdgeExtension edge1:polygonEdge isCrossingEdge2:edge]) {
                 return YES;

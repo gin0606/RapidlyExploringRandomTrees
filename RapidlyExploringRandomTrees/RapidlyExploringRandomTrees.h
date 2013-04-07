@@ -8,7 +8,6 @@
 #import <Foundation/Foundation.h>
 
 @class NodeArray;
-@class PolygonArray;
 @class Node;
 
 @interface RapidlyExploringRandomTrees : NSObject
@@ -25,7 +24,7 @@
 @property(nonatomic) float delta;
 
 @property(retain, nonatomic) NodeArray *nodeArray;
-@property(retain, nonatomic) PolygonArray *objectArray;
+@property(retain, nonatomic) NSMutableArray *objectArray;
 
 - (void)step;
 
