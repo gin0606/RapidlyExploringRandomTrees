@@ -87,7 +87,7 @@
 
     // 障害物描写
     ccDrawColor4B(0, 255, 0, 255);
-    NSMutableArray *polygonArray = self.rrt.objectArray;
+    NSArray *polygonArray = self.rrt.objectArray;
     for (Polygon *polygon in polygonArray) {
         [self drawPolygon:polygon.edgeArray];
     }
@@ -105,7 +105,7 @@
     ccDrawLine(origin.p, destination.p);
 }
 
-- (void)drawPolygon:(NSMutableArray *)edgeArray {
+- (void)drawPolygon:(NSArray *)edgeArray {
     for (Edge *object in edgeArray) {
         [self drawLine:object.origin destination:object.destination];
     }

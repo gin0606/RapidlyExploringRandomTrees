@@ -10,9 +10,9 @@
 @class Node;
 
 @interface Polygon : NSObject
-+ (id)polygonWithNodeArray:(NSMutableArray *)nodeArray;
++ (id)polygonWithNodeArray:(NSArray *)nodeArray;
 
-- (id)initWithNodeArray:(NSMutableArray *)nodeArray;
+- (id)initWithNodeArray:(NSArray *)nodeArray;
 
 - (BOOL)containPoint:(Node *)v;
 

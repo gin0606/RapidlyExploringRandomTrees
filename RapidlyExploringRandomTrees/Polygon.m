@@ -12,11 +12,11 @@
 @implementation Polygon {
 }
 
-+ (id)polygonWithNodeArray:(NSMutableArray *)nodeArray {
++ (id)polygonWithNodeArray:(NSArray *)nodeArray {
     return [[[self alloc] initWithNodeArray:nodeArray] autorelease];
 }
 
-- (id)initWithNodeArray:(NSMutableArray *)nodeArray {
+- (id)initWithNodeArray:(NSArray *)nodeArray {
     if (self = [super init]) {
         self.path = CGPathCreateMutable();
 
