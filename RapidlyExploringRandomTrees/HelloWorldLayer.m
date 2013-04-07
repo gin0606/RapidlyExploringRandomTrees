@@ -46,16 +46,16 @@
         CCLOG(@"targetX : %f, targetY : %f", self.rrt.targetPoint.p.x, self.rrt.targetPoint.p.y);
 
         // 障害物を仮で設置
-//        NodeArray *na = [NodeArray nodeArray];
-//        int n = 8;
-//        float angle = 360 / n;
-//        Node *circleCenter = [Node nodeWithX:75 y:75];
-//        for (int i = 0; i < n; i++) {
-//            CGPoint rp = ccpRotateByAngle(circleCenter.p, ccp(50, 50), CC_DEGREES_TO_RADIANS(angle * i));
-//            Node *v = [Node nodeWithPoint:rp];
-//            [na addObject:v];
-//        }
-//        [self.rrt.objectArray addObject:[Polygon polygonWithNodeArray:na]];
+        NodeArray *na = [NodeArray nodeArray];
+        int n = 8;
+        float angle = 360 / n;
+        Node *circleCenter = [Node nodeWithX:75 y:75];
+        for (int i = 0; i < n; i++) {
+            CGPoint rp = ccpRotateByAngle(circleCenter.p, ccp(50, 50), CC_DEGREES_TO_RADIANS(angle * i));
+            Node *v = [Node nodeWithPoint:rp];
+            [na addObject:v];
+        }
+        [self.rrt.objectArray addObject:[Polygon polygonWithNodeArray:na]];
 
 
         [self schedule:@selector(step)/* interval:0.2f*/];
