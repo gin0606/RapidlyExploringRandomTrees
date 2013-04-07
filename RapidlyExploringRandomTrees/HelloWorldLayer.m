@@ -10,7 +10,6 @@
 #import "HelloWorldLayer.h"
 #import "RapidlyExploringRandomTrees.h"
 #import "Edge.h"
-#import "EdgeArray.h"
 #import "Polygon.h"
 #import "PolygonArray.h"
 #import "NodeArray.h"
@@ -108,7 +107,7 @@
     ccDrawLine(origin.p, destination.p);
 }
 
-- (void)drawPolygon:(EdgeArray *)edgeArray {
+- (void)drawPolygon:(NSMutableArray *)edgeArray {
     for (Edge *object in edgeArray) {
         [self drawLine:object.origin destination:object.destination];
     }

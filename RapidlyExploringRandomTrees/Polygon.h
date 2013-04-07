@@ -8,7 +8,6 @@
 #import <Foundation/Foundation.h>
 
 @class NodeArray;
-@class EdgeArray;
 @class Node;
 
 @interface Polygon : NSObject
@@ -20,6 +19,6 @@
 
 
 @property CGMutablePathRef path;
-@property(retain, nonatomic) EdgeArray *edgeArray;
+@property(retain, nonatomic) NSMutableArray *edgeArray;
 
 @end

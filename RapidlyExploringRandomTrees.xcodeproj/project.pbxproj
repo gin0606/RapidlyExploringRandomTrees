@@ -138,7 +138,6 @@
 		ACC1DFD23C3DB206446A0C8F /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC1DBB6964CE4C9D46DABC4 /* fps_images-ipadhd.png */; };
 		ACC1DFDA6179A0FD4660695A /* CCGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC1DAFBD3ADD15C2525A3B2 /* CCGLView.m */; };
 		ACC1DFE447B9B2B1E6986C29 /* CCSpriteBatchNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC1DADD972A82268BB4F27B /* CCSpriteBatchNode.m */; };
-		ACC1DFE59453FAF8A92F15DA /* EdgeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC1DA7ADE6186D840EEF0AC /* EdgeArray.m */; };
 		ACC1DFEF8A9C54EAFB29B686 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC1DA3FB6BF11F66AFA4BBC /* main.m */; };
 		ACC1DFF3FFE314D3824E76AA /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC1D40FB19AC0EAE799F0B5 /* fps_images-hd.png */; };
 /* End PBXBuildFile section */
@@ -163,7 +162,6 @@
 		ACC1D0CDF45B43C573C7B54B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		ACC1D0CE3FD9D0C566A68C03 /* ccShader_PositionTextureColor_frag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ccShader_PositionTextureColor_frag.h; path = libs/cocos2d/ccShader_PositionTextureColor_frag.h; sourceTree = "<group>"; };
 		ACC1D0D554A5946F62E441D5 /* TransformUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TransformUtils.m; path = libs/cocos2d/Support/TransformUtils.m; sourceTree = "<group>"; };
-		ACC1D0D7693CF61A1CADE104 /* EdgeArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgeArray.h; sourceTree = "<group>"; };
 		ACC1D0DCA7605C1C68B9EF14 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		ACC1D0E87CFF964093633FE8 /* CCNode+Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CCNode+Debug.h"; path = "libs/cocos2d/CCNode+Debug.h"; sourceTree = "<group>"; };
 		ACC1D0ECE64CE1687AF02514 /* OpenGL_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OpenGL_Internal.h; path = libs/cocos2d/Support/OpenGL_Internal.h; sourceTree = "<group>"; };
@@ -338,7 +336,6 @@
 		ACC1DA608DC8FC79D1E3B637 /* CCSpriteFrameCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCSpriteFrameCache.h; path = libs/cocos2d/CCSpriteFrameCache.h; sourceTree = "<group>"; };
 		ACC1DA65DA6263B383127D18 /* PolygonArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolygonArray.m; sourceTree = "<group>"; };
 		ACC1DA75EDC43C26D05B3C3A /* ccShader_PositionTexture_uColor_vert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ccShader_PositionTexture_uColor_vert.h; path = libs/cocos2d/ccShader_PositionTexture_uColor_vert.h; sourceTree = "<group>"; };
-		ACC1DA7ADE6186D840EEF0AC /* EdgeArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EdgeArray.m; sourceTree = "<group>"; };
 		ACC1DA8B65ECD9E0D9768A0E /* CCTouchHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CCTouchHandler.m; path = libs/cocos2d/Platforms/iOS/CCTouchHandler.m; sourceTree = "<group>"; };
 		ACC1DA9A98DE69B61C92AC59 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		ACC1DA9CBBE7D40FC8B70D90 /* aabb.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = aabb.c; path = libs/kazmath/src/aabb.c; sourceTree = "<group>"; };
@@ -514,8 +511,6 @@
 				ACC1D5C8E8CEFE9676E4F2A6 /* RapidlyExploringRandomTrees.h */,
 				ACC1D448365DF9FFF26DFE34 /* Edge.m */,
 				ACC1DF2D743F9D793D1F7CF1 /* Edge.h */,
-				ACC1DA7ADE6186D840EEF0AC /* EdgeArray.m */,
-				ACC1D0D7693CF61A1CADE104 /* EdgeArray.h */,
 				ACC1DCF48D4983814C11C04F /* NodeArray.m */,
 				ACC1DEFCFBCDCAD444A7ED95 /* NodeArray.h */,
 				ACC1D41EADFF139369EEF7F4 /* EdgeExtension.m */,
@@ -1048,7 +1043,6 @@
 				ACC1D4C621E99437DB0A191E /* IntroLayer.m in Sources */,
 				ACC1D7AB1B62218AD564B29B /* RapidlyExploringRandomTrees.m in Sources */,
 				ACC1D03D7A1D92CF2CC4AA09 /* Edge.m in Sources */,
-				ACC1DFE59453FAF8A92F15DA /* EdgeArray.m in Sources */,
 				ACC1D435D885B21C34C175D2 /* NodeArray.m in Sources */,
 				ACC1D06D65101688F3B9A8F6 /* EdgeExtension.m in Sources */,
 				ACC1DA83A73E4D79E5383DF1 /* Polygon.m in Sources */,

@@ -11,7 +11,6 @@
 #import "EdgeExtension.h"
 #import "Polygon.h"
 #import "Edge.h"
-#import "EdgeArray.h"
 #import "Node.h"
 
 @interface RapidlyExploringRandomTrees ()
@@ -118,7 +117,7 @@ NからRにdeltaだけ移動した点Dを求める
 // 障害物に線が被ってるか
 - (BOOL)didVectorOverBarriers:(Edge *)edge {
     for (Polygon *polygon in self.objectArray) {
-        for (Edge *polygonEdge in polygon.edgeArray.embeddedArray) {
+        for (Edge *polygonEdge in polygon.edgeArray) {
             if ([EdgeExtension edge1:polygonEdge isCrossingEdge2:edge]) {
                 return YES;
             }

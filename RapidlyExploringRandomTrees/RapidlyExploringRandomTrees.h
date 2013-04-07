@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class EdgeArray;
 @class NodeArray;
 @class PolygonArray;
 @class Node;

@@ -7,7 +7,6 @@
 
 #import "Polygon.h"
 #import "NodeArray.h"
-#import "EdgeArray.h"
 #import "Edge.h"
 #import "Node.h"
 
@@ -22,7 +21,7 @@
     if (self = [super init]) {
         self.path = CGPathCreateMutable();
 
-        self.edgeArray = [EdgeArray edgeArray];
+        self.edgeArray = [NSMutableArray array];
         int count = [nodeArray count];
         Node *sp = [nodeArray objectAtIndex:0];
         CGPathMoveToPoint(self.path, NULL, sp.p.x, sp.p.y);
