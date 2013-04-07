@@ -7,13 +7,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class NodeArray;
 @class Node;
 
 @interface Polygon : NSObject
-+ (id)polygonWithNodeArray:(NodeArray *)nodeArray;
++ (id)polygonWithNodeArray:(NSMutableArray *)nodeArray;
 
-- (id)initWithNodeArray:(NodeArray *)nodeArray;
+- (id)initWithNodeArray:(NSMutableArray *)nodeArray;
 
 - (BOOL)containPoint:(Node *)v;
 

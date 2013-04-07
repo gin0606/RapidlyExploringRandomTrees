@@ -11,7 +11,6 @@
 #import "RapidlyExploringRandomTrees.h"
 #import "Edge.h"
 #import "Polygon.h"
-#import "NodeArray.h"
 #import "Node.h"
 
 @interface HelloWorldLayer ()
@@ -45,7 +44,7 @@
         CCLOG(@"targetX : %f, targetY : %f", self.rrt.targetPoint.p.x, self.rrt.targetPoint.p.y);
 
         // 障害物を仮で設置
-        NodeArray *na = [NodeArray nodeArray];
+        NSMutableArray *na = [NSMutableArray array];
         int n = 8;
         float angle = 360 / n;
         Node *circleCenter = [Node nodeWithX:75 y:75];

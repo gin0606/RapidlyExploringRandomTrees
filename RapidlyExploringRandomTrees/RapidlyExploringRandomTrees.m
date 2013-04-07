@@ -5,12 +5,12 @@
 //
 
 
-#import "NodeArray.h"
 #import "RapidlyExploringRandomTrees.h"
 #import "EdgeExtension.h"
 #import "Polygon.h"
 #import "Edge.h"
 #import "Node.h"
+#import "NSArray+NodeArray.h"
 
 @interface RapidlyExploringRandomTrees ()
 - (BOOL)edgeCrossCheck:(Node *)o1 destination:(Node *)d1;
@@ -43,7 +43,7 @@
         self.diffY = self.maxY - self.minY;
 
         // ノード入れるArray
-        self.nodeArray = [NodeArray nodeArray];
+        self.nodeArray = [NSMutableArray array];
 
         // 障害物入れるArray
         self.objectArray = [NSMutableArray array];
@@ -91,7 +91,7 @@ NからRにdeltaだけ移動した点Dを求める
 }
 
 - (BOOL)edgeCrossCheck:(Node *)o1 destination:(Node *)d1 {
-    for (Node *o2 in self.nodeArray.embeddedArray) {
+    for (Node *o2 in self.nodeArray) {
         for (Node *d2 in o2.nextNodes) {
             BOOL isCrossing = [EdgeExtension edgeOrigin1:o1.p distination1:d1.p
                                    isCrossingEdgeOrigin2:o2.p destination2:d2.p];

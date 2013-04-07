@@ -6,28 +6,29 @@
 
 
 #import "Polygon.h"
-#import "NodeArray.h"
 #import "Edge.h"
 #import "Node.h"
 
 @implementation Polygon {
 }
 
-+ (id)polygonWithNodeArray:(NodeArray *)nodeArray {
++ (id)polygonWithNodeArray:(NSMutableArray *)nodeArray {
     return [[[self alloc] initWithNodeArray:nodeArray] autorelease];
 }
 
-- (id)initWithNodeArray:(NodeArray *)nodeArray {
+- (id)initWithNodeArray:(NSMutableArray *)nodeArray {
     if (self = [super init]) {
         self.path = CGPathCreateMutable();
 
         self.edgeArray = [NSMutableArray array];
         int count = [nodeArray count];
         Node *sp = [nodeArray objectAtIndex:0];
+        NSAssert([sp isKindOfClass:[Node class]], @"nodeArrayにはNodeしかいれない");
         CGPathMoveToPoint(self.path, NULL, sp.p.x, sp.p.y);
 
         for (int i = 1; i < count; i++) {
             Node *v = [nodeArray objectAtIndex:i];
+            NSAssert([v isKindOfClass:[Node class]], @"nodeArrayにはNodeしかいれない");
             CGPathAddLineToPoint(self.path, NULL, v.p.x, v.p.y);
 
             Edge *edge = [Edge edgeWithOrigin:sp destination:v];
