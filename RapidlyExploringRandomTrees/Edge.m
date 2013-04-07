@@ -23,4 +23,11 @@
     }
     return self;
 }
+
+- (void)dealloc {
+    self.origin = nil;
+    self.destination = nil;
+    [super dealloc];
+}
+
 @end

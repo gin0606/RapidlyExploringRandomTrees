@@ -46,4 +46,16 @@
 - (BOOL)containPoint:(Node *)v {
     return CGPathContainsPoint(self.path, NULL, v.p, YES);
 }
+
+- (void)dealloc {
+    self.edgeArray = nil;
+
+    // CGPathRelease は NULL を渡されるとcrashする
+    if(self.path){
+        CGPathRelease(self.path);
+        self.path = nil;
+    }
+    [super dealloc];
+}
+
 @end

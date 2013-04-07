@@ -141,4 +141,13 @@ NからRにdeltaだけ移動した点Dを求める
     return r;
 }
 
+- (void)dealloc {
+    self.startPoint = nil;
+    self.targetPoint = nil;
+    self.goalPoint = nil;
+    self.nodeArray = nil;
+    self.objectArray = nil;
+    [super dealloc];
+}
+
 @end
