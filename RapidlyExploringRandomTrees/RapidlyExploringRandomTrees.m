@@ -12,6 +12,9 @@
 #import "Node.h"
 #import "NSArray+NodeArray.h"
 
+// RRTの枝の長さ
+#define kDelta 5.0f
+
 @interface RapidlyExploringRandomTrees ()
 - (BOOL)edgeCrossCheck:(Node *)o1 destination:(Node *)d1;
 
@@ -48,7 +51,7 @@
         // 障害物入れるArray
         self.objectArray = [NSMutableArray array];
 
-        self.delta = 1.f;
+        self.delta = kDelta;
     }
     return self;
 }
